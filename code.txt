@@ -1,5 +1,0 @@
-LDR r0, m1
-LDR r1, m2
-ADD r2, r0, r1
-STR r2, m3 :
-HALT

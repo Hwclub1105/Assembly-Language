@@ -1,0 +1,6 @@
+LDR r0, m0
+LDR r1, m1
+ADD r2, r0, r1
+STR r2, m3 
+OUT m3
+HALT
