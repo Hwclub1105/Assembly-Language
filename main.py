@@ -1,9 +1,9 @@
 #Assembly Language
 import sys
 instruction_set = {'ADD':'0000','SUB':'0001','MOV':'0010','LDR':'0011','OUT':'0100','HAlT':'0101','BGT':'0110','BLT':'0111','BEQ':'1000','B':'1001','CMP':'1010','STR':'1011'}
-memory = {'m0':17, 'm1' : 25, 'm2' : '', 'm3' : ''}
+memory = {'m0':17, 'm1' : 25, 'm2' : 189, 'm3' : 58}
 temp_CMP = []
-register = {'r0':'', 'r1' : '', 'r2' : '', 'r3' : ''}
+register = {'r0':0, 'r1' : 0, 'r2' : 0, 'r3' : 0}
 branches = []
 
 m0,m1,m2,m3 = 'm0','m1','m2','m3'
@@ -59,7 +59,27 @@ def Assemble(codefile):
                 operation =  'I' + str(instruction_set[line[:3]])
                 parameter = line[3:].strip()
                 eval(f'{operation}({parameter})')
-       
+            else:
+                count = 0
+                file.seek(0)
+                while file.readline() != line:
+                    count += 1
+                pass
+                
 
 
-Assemble('adding.txt')
+def find_line(line, file):
+    count = 0
+    file.seek(0)
+    while file.readline() != line:
+        count += 1
+    return count
+    
+    
+#Assemble('adding.txt')
+
+with open('adding.txt','r') as file:
+    num  = find_line('STR r2, m3 :',file)
+    print(num)
+    file.seek(0)
+    print(file.readlines()[num])
