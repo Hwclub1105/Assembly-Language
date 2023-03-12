@@ -71,7 +71,9 @@ def Assemble(codefile):
 def find_line(line, file):
     count = 0
     file.seek(0)
+    
     while file.readline() != line:
+        print(file.readline())
         count += 1
     return count
     
@@ -82,4 +84,4 @@ with open('adding.txt','r') as file:
     num  = find_line('STR r2, m3 :',file)
     print(num)
     file.seek(0)
-    print(file.readlines()[num])
+    print(file.readlines())
